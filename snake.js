@@ -1,15 +1,20 @@
 const canvas = document.getElementById("snakeGame");
 const ctx = canvas.getContext("2d");
+const startButton = document.getElementById("startButton");
+const scoreDisplay = document.getElementById("scoreDisplay");
 
 const gridSize = 20;
 const tileCount = canvas.width / gridSize;
 
-let snake = [{ x: 10, y: 10 }]; // Cobrinha começa no meio
+let snake = [{ x: 10, y: 10 }];
 let direction = { x: 0, y: 0 };
 let food = { x: 5, y: 5 };
 let score = 0;
+let gameRunning = false;
 
 function gameLoop() {
+    if (!gameRunning) return;
+
     update();
     draw();
     setTimeout(gameLoop, 100);
@@ -36,6 +41,7 @@ function update() {
     // Verifica se comeu a comida
     if (head.x === food.x && head.y === food.y) {
         score++;
+        scoreDisplay.textContent = "Pontuação: " + score;
         placeFood();
     } else {
         snake.pop();
@@ -54,11 +60,6 @@ function draw() {
     // Desenha a comida
     ctx.fillStyle = "#2ecc71";
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
-
-    // Desenha a pontuação
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "20px Arial";
-    ctx.fillText("Pontuação: " + score, 10, 30);
 }
 
 function placeFood() {
@@ -70,25 +71,34 @@ function resetGame() {
     snake = [{ x: 10, y: 10 }];
     direction = { x: 0, y: 0 };
     score = 0;
-    placeFood();
+    scoreDisplay.textContent = "Pontuação: 0";
+    gameRunning = false;
+    startButton.textContent = "Reiniciar Jogo";
 }
 
+startButton.addEventListener("click", () => {
+    if (!gameRunning) {
+        gameRunning = true;
+        startButton.textContent = "Jogo Rodando...";
+        gameLoop();
+    }
+});
+
 window.addEventListener("keydown", e => {
-    switch (e.key) {
-        case "ArrowUp":
+    switch (e.key.toLowerCase()) {
+        case "w":
             if (direction.y === 0) direction = { x: 0, y: -1 };
             break;
-        case "ArrowDown":
+        case "s":
             if (direction.y === 0) direction = { x: 0, y: 1 };
             break;
-        case "ArrowLeft":
+        case "a":
             if (direction.x === 0) direction = { x: -1, y: 0 };
             break;
-        case "ArrowRight":
+        case "d":
             if (direction.x === 0) direction = { x: 1, y: 0 };
             break;
     }
 });
 
 placeFood();
-gameLoop();
