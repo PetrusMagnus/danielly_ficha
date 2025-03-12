@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #1a1a1a; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
     margin: 0;
     padding: 0;
 }
@@ -10,8 +10,8 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #262626; /* Container escuro */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Sombra branca */
     border-radius: 8px;
 }
 
@@ -22,12 +22,12 @@ header {
 
 header h1 {
     font-size: 2.5em;
-    color: #2c3e50;
+    color: #e74c3c; /* Vermelho inspirado em Round Six */
 }
 
 header h2 {
     font-size: 1.8em;
-    color: #34495e;
+    color: #e74c3c; /* Vermelho inspirado em Round Six */
 }
 
 .profile {
@@ -40,7 +40,7 @@ header h2 {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 4px solid #2c3e50;
+    border: 4px solid #e74c3c; /* Borda vermelha */
     margin-right: 20px;
 }
 
@@ -50,7 +50,7 @@ header h2 {
 }
 
 .info a {
-    color: #2980b9;
+    color: #3498db; /* Azul para links */
     text-decoration: none;
 }
 
@@ -64,7 +64,7 @@ header h2 {
 
 h3 {
     font-size: 1.5em;
-    color: #2c3e50;
+    color: #e74c3c; /* Vermelho inspirado em Round Six */
     margin-bottom: 10px;
 }
 
@@ -76,6 +76,22 @@ ul {
 ul li {
     font-size: 1.1em;
     margin: 10px 0;
+}
+
+.game-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.game-container h3 {
+    font-size: 1.8em;
+    color: #e74c3c; /* Vermelho inspirado em Round Six */
+}
+
+canvas {
+    background-color: #333; /* Fundo escuro para o jogo */
+    border: 2px solid #e74c3c; /* Borda vermelha */
+    border-radius: 8px;
 }
 
 footer {
